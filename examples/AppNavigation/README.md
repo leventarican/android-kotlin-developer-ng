@@ -7,3 +7,6 @@
 ## Navigation Patterns
 * in the _action bar_ we can find the _navigation drawer_, _app button_ and _overflow menu_
     * _app button_ is similar to the _system back button_
+
+## Links
+* navigation releases: https://developer.android.com/jetpack/androidx/releases/navigation
