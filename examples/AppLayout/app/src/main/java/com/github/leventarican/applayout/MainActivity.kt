@@ -6,5 +6,8 @@ import android.os.Bundle
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // connect layout file with activity
+        setContentView(R.layout.activity_main)
     }
 }
