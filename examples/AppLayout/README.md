@@ -16,3 +16,6 @@ buildFeatures {
     ...
 </layout>
 ```
+* for binding data we need to create a `data` class. e.g. `com.github.leventarican.applayout.Data`
+* we also create a `<data>` element where we define our reference / variable
+* finally we reference / use the variable. see example `activity_main.xml`

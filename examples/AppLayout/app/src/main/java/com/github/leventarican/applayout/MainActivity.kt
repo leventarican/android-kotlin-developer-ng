@@ -16,27 +16,22 @@ class MainActivity : AppCompatActivity() {
     // ActivityMainBinding name is derived from the layout file: activity_main
     private lateinit var binding: ActivityMainBinding
 
+    // bind the data
+    private val programmingLang: Data = Data(name = "java / kotlin")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // connect layout file with activity
-//        setContentView(R.layout.activity_main)
-
-        // use data binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-//        findViewById<Button>(R.id.button).setOnClickListener { process(it) }
+        // assign data to layout
+        binding.programmingLang = programmingLang
+
         binding.button.setOnClickListener { process(it) }
     }
 
     private fun process(view: View?) {
-//        val e = findViewById<EditText>(R.id.edit)
-//        val tv = findViewById<TextView>(R.id.textView)
-//
-//        tv.text = e.text
-
         binding.textView.text = binding.edit.text
-
         hideKeyboard(view)
     }
 
