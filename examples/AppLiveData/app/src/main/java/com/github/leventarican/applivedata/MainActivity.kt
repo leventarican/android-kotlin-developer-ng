@@ -8,28 +8,28 @@ import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    val data = Data()
-    lateinit var tv: TextView
+    private lateinit var data: Data
+    private lateinit var tv: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        data = Data()
         tv = findViewById<TextView>(R.id.textView)
-        updateUI()
 
-        val b = findViewById<Button>(R.id.button)
-        b.setOnClickListener {
-            Log.d("#", "data changed ...")
+        findViewById<Button>(R.id.button).setOnClickListener {
             simulateDataChange(it)
         }
-    }
 
-    private fun updateUI() {
-        tv.text = "data: ${data.value}"
+        data.digit.observe(this, {
+            Log.d("#", "event received: $it. react...")
+            tv.text = "data: $it"
+        })
     }
 
     private fun simulateDataChange(v: View?) {
-        data.value = data.value++
+        Log.d("#", "simulate data change")
+        data.digit.value = data.digit.value?.plus(2)
     }
 }
