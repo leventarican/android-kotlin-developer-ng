@@ -4,6 +4,15 @@
 * view model
 * fragments
 
+TODO
+* Quality 
+	* ViewModel and LiveData lifecycle classes
+	* Single Activity architecture
+* Navigation
+	* navigation file
+	* DataBindingUtil
+	* NavController
+
 ## Android Jetpack
 * Jetpack is a suite of libraries
 
@@ -24,4 +33,5 @@
 * https://developer.android.com/topic/libraries/support-library/index
 * https://developer.android.com/kotlin/ktx?hl=de
 * https://www.toptal.com/android/top-10-most-common-android-development-mistakes
+* https://github.com/android/sunflower
 
