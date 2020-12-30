@@ -19,15 +19,11 @@ class MainActivity : AppCompatActivity() {
         val b = findViewById<Button>(R.id.button)
         b.setOnClickListener {
             if (savedInstanceState == null) {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_main, AboutFragment.newInstance())
-                    .commit()
-
-                Log.d("#", "android")
-                supportFragmentManager.fragments.forEach {
-                    Log.d("#", it.toString())
+                val transaction = supportFragmentManager.beginTransaction()
+                for (i in 0..3) {
+                    transaction.add(R.id.ll, AboutFragment.newInstance())
                 }
+                transaction.commit()
             }
         }
     }
