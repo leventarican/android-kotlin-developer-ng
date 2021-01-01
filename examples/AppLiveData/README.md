@@ -10,4 +10,5 @@
 ## Example
 * the example code demonstrates how to react on data changes
 * there is no ViewModel, only LiveData
+
 ![sequence diagram](sequence.png)
