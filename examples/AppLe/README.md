@@ -1,8 +1,6 @@
 # App Le
 
-## data binding
-* make a data class directly available to a view
-can
+* app under construction
 
 ## links
 * https://developer.android.com/courses/kotlin-android-fundamentals/toc
