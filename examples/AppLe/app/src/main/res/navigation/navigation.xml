@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
     app:startDestination="@id/screen0">
 
     <fragment
         android:id="@+id/screen0"
         android:name="com.github.leventarican.apple.Screen0"
-        android:label="Screen0" >
+        android:label="Screen0"
+        tools:layout="@layout/fragment_screen0">
         <action
             android:id="@+id/action_screen0_to_screen1"
             app:destination="@id/screen1" />
