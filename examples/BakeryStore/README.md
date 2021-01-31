@@ -1,4 +1,4 @@
-# Baker Store
+# Bakery Store
 
 * create a _navigation_ resource file `navigation.xml`
 * dependencies `navigation-fragment-ktx` and `navigation-ui-ktx` in app build gradle will be automatically added
