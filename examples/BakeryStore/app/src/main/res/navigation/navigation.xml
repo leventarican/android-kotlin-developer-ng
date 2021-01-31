@@ -18,5 +18,35 @@
         android:id="@+id/welcomeFragment"
         android:name="com.github.leventarican.bakerystore.screens.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_instructionsFragment"
+            app:destination="@id/instructionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instructionsFragment"
+        android:name="com.github.leventarican.bakerystore.screens.InstructionsFragment"
+        android:label="fragment_instructions"
+        tools:layout="@layout/fragment_instructions" >
+        <action
+            android:id="@+id/action_instructionsFragment_to_listingFragment"
+            app:destination="@id/listingFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/listingFragment"
+        android:name="com.github.leventarican.bakerystore.screens.ListingFragment"
+        android:label="fragment_listing"
+        tools:layout="@layout/fragment_listing" >
+        <action
+            android:id="@+id/action_listingFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.github.leventarican.bakerystore.screens.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
