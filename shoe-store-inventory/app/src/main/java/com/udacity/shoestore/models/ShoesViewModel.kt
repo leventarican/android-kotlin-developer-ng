@@ -14,19 +14,17 @@ class ShoesViewModel : ViewModel() {
     fun storeShoe(shoe: Shoe) {
         shoe.let {
             shoeList.add(it)
+            // fire event / trigger observer
             _shoes.value = shoeList
         }
     }
 
-//    init {
-//        fillShoes()
-//    }
-//
-//    private fun fillShoes() {
-//        shoeList = mutableListOf(
-//            Shoe("java", 15.0, ".java", "buy once wear everywhere"),
-//            Shoe("kotlin", 1.3, ".kt", "concise"),
-//            Shoe("rust", 1.49, ".rs", "safe")
-//        )
-//    }
+    fun initShoes() {
+        shoeList = mutableListOf()
+        storeShoe(
+            Shoe("java", 15.0, ".java", "run everywhere")
+        )
+        storeShoe(Shoe("kotlin", 1.3, ".kt", "concise"))
+        storeShoe(Shoe("rust", 1.49, ".rs", "safe"))
+    }
 }
