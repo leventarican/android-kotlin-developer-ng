@@ -3,6 +3,7 @@ package com.udacity.shoestore.screens
 import android.graphics.fonts.Font
 import android.os.Bundle
 import android.text.Layout
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,15 +32,21 @@ class ListingFragment : Fragment() {
         val binding: FragmentListingBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_listing, container, false)
 
-        viewModel = ViewModelProvider(this).get(ShoesViewModel::class.java)
+        // TODO: or use activityViewModels
+        viewModel = ViewModelProvider(requireActivity()).get(ShoesViewModel::class.java)
 
         // data binding
         binding.shoesViewModel = viewModel
 
+        // TODO: https://developer.android.com/topic/libraries/data-binding/two-way
+
         viewModel.shoes.observe(viewLifecycleOwner, Observer {
-            it.forEach { shoe -> binding.llListing.addView(textViewFrom(shoe)) }
+            Log.d("#", "new shoe ${it.size}")
+            it.forEach { shoe ->
+                Log.d("#", "shoe: ${shoe.name}")
+                binding.llListing.addView(textViewFrom(shoe))
+            }
         })
-        viewModel.initShoes()
 
         binding.fabListing.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_listingFragment_to_detailFragment))
 

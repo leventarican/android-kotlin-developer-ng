@@ -10,4 +10,7 @@
     <string name="next">Skip</string>
     <string name="instruction_0">once you read this onboarding screen you dont see it again.</string>
     <string name="instruction_1">press next / skip</string>
+    <string name="shoe_name">name</string>
+    <string name="save">save</string>
+    <string name="shoe_size">size</string>
 </resources>
