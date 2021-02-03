@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <!--
+    convention over code:
+    item id has to much with destination: in out case loginFragment
+    thats how the optionmenu code in ListingFragment class works
+    -->
     <item
         android:id="@+id/loginFragment"
         android:title="@string/logout" />
