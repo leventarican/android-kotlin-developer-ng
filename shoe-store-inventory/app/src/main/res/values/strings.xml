@@ -13,4 +13,6 @@
     <string name="shoe_name">name</string>
     <string name="save">save</string>
     <string name="shoe_size">size</string>
+    <string name="description">description</string>
+    <string name="company">company</string>
 </resources>

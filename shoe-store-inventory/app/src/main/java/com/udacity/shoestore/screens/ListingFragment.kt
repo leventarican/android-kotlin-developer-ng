@@ -11,19 +11,22 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.udacity.shoestore.MainActivity
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentListingBinding
 import com.udacity.shoestore.databinding.FragmentLoginBinding
 import com.udacity.shoestore.models.Shoe
 import com.udacity.shoestore.models.ShoesViewModel
+import org.w3c.dom.Text
 
 class ListingFragment : Fragment() {
 
-    private lateinit var viewModel: ShoesViewModel
+    private val viewModel: ShoesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,19 +35,12 @@ class ListingFragment : Fragment() {
         val binding: FragmentListingBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_listing, container, false)
 
-        // TODO: or use activityViewModels
-        viewModel = ViewModelProvider(requireActivity()).get(ShoesViewModel::class.java)
-
         // data binding
         binding.shoesViewModel = viewModel
 
-        // TODO: https://developer.android.com/topic/libraries/data-binding/two-way
-
         viewModel.shoes.observe(viewLifecycleOwner, Observer {
-            Log.d("#", "new shoe ${it.size}")
             it.forEach { shoe ->
-                Log.d("#", "shoe: ${shoe.name}")
-                binding.llListing.addView(textViewFrom(shoe))
+                binding.llListing.addView(createViewGroupFrom(shoe))
             }
         })
 
@@ -53,15 +49,29 @@ class ListingFragment : Fragment() {
         return binding.root
     }
 
-    private fun textViewFrom(shoe: Shoe): TextView {
-        val tv = TextView(context)
-        tv.text = "${shoe.name}, ${shoe.size}"
-        tv.layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        tv.textSize = 36.0F
-        return tv
+    private fun createViewGroupFrom(shoe: Shoe): View {
+        return LinearLayout(context).apply {
+            this.layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            this.orientation = LinearLayout.VERTICAL
+            this.addView(TextView(context).apply {
+                this.text = shoe.name
+                this.textSize = 36.0F
+            })
+            this.addView(TextView(context).apply {
+                this.text = "${shoe.size}"
+                this.textSize = 18.0F
+            })
+            this.addView(TextView(context).apply {
+                this.text = shoe.company
+                this.textSize = 18.0F
+            })
+            this.addView(TextView(context).apply {
+                this.text = shoe.description
+                this.textSize = 18.0F
+            })
+        }
     }
-
 }
