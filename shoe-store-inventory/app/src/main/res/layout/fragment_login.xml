@@ -5,22 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".screens.LoginFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
+    <!--    we have here a straightforward layout that's -->
+    <!--    why we use LinearLayout as parent layout over ConstraintLayout-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mail"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.33" />
+            android:textSize="36sp" />
 
         <EditText
             android:id="@+id/et_mail"
@@ -30,10 +29,7 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/mail"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_mail" />
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/tv_password"
@@ -41,10 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/password"
-            android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_mail" />
+            android:textSize="36sp" />
 
         <EditText
             android:id="@+id/et_password"
@@ -54,21 +47,15 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+            android:text="@string/login" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>

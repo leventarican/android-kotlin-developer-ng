@@ -11,6 +11,9 @@
             type="com.udacity.shoestore.models.ShoesViewModel" />
     </data>
 
+<!--    we use here CoordinatorLayout as parent layout -->
+<!--    in order to put the floating button in a corner-->
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

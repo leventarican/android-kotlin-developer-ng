@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".screens.DetailFragment">
 
+<!--    for more freedom we use ConstraintLayout as parent layout-->
+<!--    instead of LinearLayout-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
