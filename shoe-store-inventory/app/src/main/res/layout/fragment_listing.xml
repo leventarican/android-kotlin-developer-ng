@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".screens.ListingFragment">
 
-    <data>
-
-        <variable
-            name="shoesViewModel"
-            type="com.udacity.shoestore.models.ShoesViewModel" />
-    </data>
-
 <!--    we use here CoordinatorLayout as parent layout -->
 <!--    in order to put the floating button in a corner-->
 

@@ -35,9 +35,6 @@ class ListingFragment : Fragment() {
         val binding: FragmentListingBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_listing, container, false)
 
-        // data binding
-        binding.shoesViewModel = viewModel
-
         viewModel.shoes.observe(viewLifecycleOwner, Observer {
             it.forEach { shoe ->
                 binding.llListing.addView(createViewGroupFrom(shoe))
