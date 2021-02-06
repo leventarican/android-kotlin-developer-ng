@@ -1,7 +1,6 @@
 package com.udacity.shoestore.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,6 @@ class DetailFragment : Fragment() {
             val size = binding.etSize.text.toString().toDouble()
             val company = binding.etCompany.text.toString()
             val description = binding.etDescription.text.toString()
-            Log.d("#", "save data: $name; $size")
             viewModel.storeShoe(Shoe(name, size, company, description, listOf("")))
             view.findNavController().navigate(R.id.action_detailFragment_to_listingFragment)
         }

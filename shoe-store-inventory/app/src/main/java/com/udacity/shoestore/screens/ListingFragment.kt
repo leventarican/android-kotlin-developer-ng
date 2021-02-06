@@ -1,28 +1,20 @@
 package com.udacity.shoestore.screens
 
-import android.graphics.fonts.Font
 import android.os.Bundle
-import android.text.Layout
-import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.udacity.shoestore.MainActivity
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentListingBinding
-import com.udacity.shoestore.databinding.FragmentLoginBinding
 import com.udacity.shoestore.models.Shoe
 import com.udacity.shoestore.models.ShoesViewModel
-import org.w3c.dom.Text
 
 class ListingFragment : Fragment() {
 
@@ -54,7 +46,6 @@ class ListingFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d("#", "logout now()")
         return NavigationUI.onNavDestinationSelected(
             item,
             requireView().findNavController()
