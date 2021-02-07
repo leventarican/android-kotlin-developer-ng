@@ -1,7 +1,9 @@
 package com.github.leventarican.googlemaps
 
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 
@@ -10,11 +12,13 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
+    private val TAG = MapsActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,21 +30,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+     * we have a non-null instance of google map
      */
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        // to get lat and lon: google maps > whats here
+        val mountEverest = LatLng(27.98831027677858, 86.92497201495814)
+        val zoom = 5f
+        map.addMarker(MarkerOptions().position(mountEverest).title("Mount Everest"))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(mountEverest, zoom))
+
+        // incl. also custom map style
+//        map.mapType = GoogleMap.MAP_TYPE_SATELLITE
+        setMapStyle(googleMap)
+    }
+
+    /**
+     * map style in a raw resource file
+     */
+    private fun setMapStyle(map: GoogleMap) {
+        try {
+            val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
+            if (!success) {
+                Log.e(TAG, "map style (JSON) parsing failed")
+            }
+        } catch (e: Resources.NotFoundException) {
+            Log.e(TAG, "JSON file not found: ", e)
+        }
     }
 
     /**
