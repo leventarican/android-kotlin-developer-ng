@@ -3,6 +3,8 @@
 * send / receive messages from android system or android apps
 * it can be used as a __messaging system__
 
+![](screenshot.png)
+
 ## Manifest declared receiver
 * specify `<receiver />` element in manifest
 * implement subclass of `BroadcastReceiver`
@@ -15,5 +17,3 @@
 ## Links
 * https://developer.android.com/guide/components/broadcasts
 * https://developer.android.com/guide/components/broadcast-exceptions
-
-![](screenshot.png)
