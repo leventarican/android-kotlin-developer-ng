@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btIntents.setOnClickListener {
             Log.d("#", "intent")
-            startActivity(Intent(this, Developer::class.java).also {
+            startActivity(Intent(this, DeveloperActivity::class.java).also {
                 it.putExtra(DEVELOPER_KEY, Developer(0, "Rust", 2))
             })
         }

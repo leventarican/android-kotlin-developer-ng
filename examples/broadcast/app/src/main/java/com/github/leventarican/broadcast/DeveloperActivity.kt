@@ -13,10 +13,9 @@ class DeveloperActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_developer)
 
-//        binding.tvDeveloper.text = intent.extras?.getParcelable<Developer>(DEVELOPER_KEY).toString()
-        binding.tvDeveloper.text.apply {
+        binding.tvDeveloper.apply {
             val dev = intent.extras?.getParcelable<Developer>(DEVELOPER_KEY) as Developer
-            "developer: ${dev.id}; ${dev.programmingLang}; ${dev.exp}"
+            this.text = "developer: ${dev.id}; ${dev.programmingLang}; ${dev.exp}"
         }
     }
 }

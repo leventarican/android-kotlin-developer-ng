@@ -17,3 +17,8 @@
 ## Links
 * https://developer.android.com/guide/components/broadcasts
 * https://developer.android.com/guide/components/broadcast-exceptions
+
+# Intents
+* the medium between components (activities, services, broadcast receivers)
+* pass data between activities
+* example includes `Parcelize` example

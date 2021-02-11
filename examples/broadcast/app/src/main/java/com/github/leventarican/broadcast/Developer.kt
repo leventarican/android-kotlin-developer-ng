@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 /**
  * Serialization, DTO, ...
+ * use Parcelize when basic types (string, bool, ...) are not enough.
  *
  * add plugin to use https://developer.android.com/kotlin/parcelize
  * plugins { id 'kotlin-parcelize' }
