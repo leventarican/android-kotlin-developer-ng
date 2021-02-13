@@ -26,9 +26,11 @@ src/release/res/values/google_maps_api.xml
 ```
 implementation 'com.google.android.gms:play-services-location:17.0.0'
 ```
-* add permission to manifest file
+* add permission and receiver to manifest file
 ```
 <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+<receiver android:name=".GeofenceBroadcastReceiver" android:enabled="true" android:exported="true" />
 ```
 
 ## Links
