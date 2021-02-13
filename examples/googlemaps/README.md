@@ -1,4 +1,4 @@
-# App using Google Maps
+# App using Google Maps and Geofencing
 
 * create new project with template `Google Maps Activity`
 * the template will generate a two files for the API key
@@ -18,5 +18,20 @@ src/release/res/values/google_maps_api.xml
 * in app project: `new resource directory > name: raw`
 * create a new file `map_style.json` in `raw` folder and paste json cody into it
 
+## Geofencing
+* use a broadcast receiver to listen to the geofence transitions
+
+### Configuraton
+* add dependency to app gradle file
+```
+implementation 'com.google.android.gms:play-services-location:17.0.0'
+```
+* add permission to manifest file
+```
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+```
+
 ## Links
 * https://developers.google.com/maps
+* https://developer.android.com/codelabs/advanced-android-kotlin-training-geofencing
+* https://developer.android.com/training/location/geofencing

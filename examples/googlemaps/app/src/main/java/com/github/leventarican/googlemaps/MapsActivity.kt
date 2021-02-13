@@ -1,32 +1,44 @@
 package com.github.leventarican.googlemaps
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.gms.location.GeofencingClient
+import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
+private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
+    private lateinit var geofencingClient: GeofencingClient
     private val TAG = MapsActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        geofencingClient = LocationServices.getGeofencingClient(this)
     }
 
     /**
@@ -36,28 +48,63 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // to get lat and lon: google maps > whats here
-        val mountEverest = LatLng(27.98831027677858, 86.92497201495814)
-        val zoom = 5f
-        map.addMarker(MarkerOptions().position(mountEverest).title("Mount Everest"))
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(mountEverest, zoom))
+        // to get lat and lon: google maps > whats here OR emulator location
+//        val mountEverest = LatLng(27.98831027677858, 86.92497201495814)
+        val point = LatLng(41.0082, 28.9782)
+//        map.addMarker(MarkerOptions().position(point))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 16f))
 
-        // incl. also custom map style
-//        map.mapType = GoogleMap.MAP_TYPE_SATELLITE
-        setMapStyle(googleMap)
+        // # map style
+        kotlin.run {
+            // incl. also custom map style; map style in a raw resource file
+            try {
+                val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
+                if (!success) {
+                    Log.e(TAG, "map style (JSON) parsing failed")
+                } else {
+                    Log.d(TAG, "map style parsing successful")
+                }
+            } catch (e: Resources.NotFoundException) {
+                Log.e(TAG, "JSON file not found: ", e)
+            }
+        }
+
+        // # enable user location
+        kotlin.run {
+            // if no permission then request permission is execute
+            val permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            val grant = PackageManager.PERMISSION_GRANTED
+            if (grant == permission) {
+                map.isMyLocationEnabled = true
+            } else {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE)
+                }
+            }
+        }
+
+        // # handle long press on map
+        kotlin.run {
+            map.setOnMapLongClickListener {
+                map.addMarker(MarkerOptions().apply {
+                    position(it)
+                })
+                map.addCircle(CircleOptions().apply {
+                    center(it)
+                    radius(200.0)
+                    strokeColor(Color.argb(255, 255, 0, 0))
+                    fillColor(Color.argb(64, 255, 0, 0))
+                    strokeWidth(4.0f)
+                })
+            }
+        }
     }
 
-    /**
-     * map style in a raw resource file
-     */
-    private fun setMapStyle(map: GoogleMap) {
-        try {
-            val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
-            if (!success) {
-                Log.e(TAG, "map style (JSON) parsing failed")
-            }
-        } catch (e: Resources.NotFoundException) {
-            Log.e(TAG, "JSON file not found: ", e)
+    // callback for permission result
+    // handle no permission so request for it is done
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE) {
+            Log.d(TAG, "onRequestPermissionsResult")
         }
     }
 
@@ -76,23 +123,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * change map type: normal, hybrid, satellite, terrain
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
-            when (item.itemId) {
-                R.id.normal_map -> {
-                    map.mapType = GoogleMap.MAP_TYPE_NORMAL
-                    true
-                }
-                R.id.hybrid_map -> {
-                    map.mapType = GoogleMap.MAP_TYPE_HYBRID
-                    true
-                }
-                R.id.satellite_map -> {
-                    map.mapType = GoogleMap.MAP_TYPE_SATELLITE
-                    true
-                }
-                R.id.terrain_map -> {
-                    map.mapType = GoogleMap.MAP_TYPE_TERRAIN
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.normal_map -> {
+                map.mapType = GoogleMap.MAP_TYPE_NORMAL
+                true
             }
+            R.id.hybrid_map -> {
+                map.mapType = GoogleMap.MAP_TYPE_HYBRID
+                true
+            }
+            R.id.satellite_map -> {
+                map.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                true
+            }
+            R.id.terrain_map -> {
+                map.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
 }
