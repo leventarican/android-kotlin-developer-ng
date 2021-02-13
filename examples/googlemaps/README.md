@@ -21,6 +21,11 @@ src/release/res/values/google_maps_api.xml
 ## Geofencing
 * use a broadcast receiver to listen to the geofence transitions
 
+### Testing with emulator
+* add a geofence (circle radius) near to user location with long click 
+* define a route with entering the geofence: `emulator > location > routes > play route`
+* when user crosses (enters) the geofence cirle a broadcast receiver will catch the event
+
 ### Configuraton
 * add dependency to app gradle file
 ```

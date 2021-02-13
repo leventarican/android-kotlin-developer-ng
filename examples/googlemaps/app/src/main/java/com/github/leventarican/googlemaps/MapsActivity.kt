@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 private const val PERMISSION_REQUEST_CODE = 34
@@ -53,23 +55,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // to get lat and lon: google maps > whats here OR emulator location
 //        val mountEverest = LatLng(27.98831027677858, 86.92497201495814)
         val point = LatLng(41.0082, 28.9784)
-//        map.addMarker(MarkerOptions().position(point))
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 16f))
 
         // # map style
-//        kotlin.run {
-//            // incl. also custom map style; map style in a raw resource file
-//            try {
-//                val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
-//                if (!success) {
-//                    Log.e(TAG, "map style (JSON) parsing failed")
-//                } else {
-//                    Log.d(TAG, "map style parsing successful")
-//                }
-//            } catch (e: Resources.NotFoundException) {
-//                Log.e(TAG, "JSON file not found: ", e)
-//            }
-//        }
+        kotlin.run {
+            // incl. also custom map style; map style in a raw resource file
+            try {
+                val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
+                if (!success) {
+                    Log.e(TAG, "map style (JSON) parsing failed")
+                } else {
+                    Log.d(TAG, "map style parsing successful")
+                }
+            } catch (e: Resources.NotFoundException) {
+                Log.e(TAG, "JSON file not found: ", e)
+            }
+        }
 
         // # enable user location
         kotlin.run {
