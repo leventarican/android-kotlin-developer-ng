@@ -1,6 +1,8 @@
 package com.github.leventarican.googlemaps
 
 import android.Manifest
+import android.app.PendingIntent
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
@@ -11,7 +13,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingClient
+import com.google.android.gms.location.GeofencingRequest
 import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,12 +28,12 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
+private const val TAG = "#"
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var geofencingClient: GeofencingClient
-    private val TAG = MapsActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +90,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // # handle long press on map
         kotlin.run {
             map.setOnMapLongClickListener {
+                map.clear()
                 map.addMarker(MarkerOptions().apply {
                     position(it)
                 })
@@ -96,6 +101,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     fillColor(Color.argb(64, 255, 0, 0))
                     strokeWidth(4.0f)
                 })
+                val geofence = Geofence.Builder()
+                    .setCircularRegion(it.latitude, it.longitude, 200.0f)
+                    .setRequestId("1000")
+                    .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
+                    .setLoiteringDelay(5000)
+                    .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                    .build()
+                val request = GeofencingRequest.Builder()
+                    .addGeofence(geofence)
+                    .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+                    .build()
+                val intent = Intent(this, GeofenceBroadcastReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(this, 2000, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+                geofencingClient.addGeofences(request, pendingIntent)
+                    .addOnSuccessListener { Log.d(TAG, "geofence added") }
+                    .addOnFailureListener { Log.d(TAG, "FAILURE: adding geofence") }
             }
         }
     }
