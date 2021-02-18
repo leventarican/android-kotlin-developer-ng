@@ -11,6 +11,7 @@
     * and assign this instance to a variable
 * the binding instance has also the root view of the corresponding layout file
     * so get the root view and set it as content view
+* view binding does not need a layout tag like in data binding
 
 ## Links
 * https://developer.android.com/topic/libraries/view-binding
