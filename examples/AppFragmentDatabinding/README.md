@@ -11,3 +11,4 @@
 * https://developer.android.com/reference/android/databinding/DataBindingUtil#inflate
 * https://developer.android.com/codelabs/kotlin-android-training-create-and-add-fragment/index.html#3
 * https://developer.android.com/codelabs/kotlin-android-training-data-binding-basics/index.html#5
+* https://developer.android.com/topic/libraries/view-binding    // view binding (!= data binding)
