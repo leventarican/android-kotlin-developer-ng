@@ -12,8 +12,12 @@
 ### repository
 1. create a repository: a class for data source (db, network, ...) abstraction
 
-### livedata / view model
-1. ...
+### live data / view model
+1. create view model with live data
+
+### recycler view
+1. create layout files: item, styles
+2. create recycler view
 
 ## Links
 * https://developer.android.com/codelabs/android-room-with-a-view-kotlin
