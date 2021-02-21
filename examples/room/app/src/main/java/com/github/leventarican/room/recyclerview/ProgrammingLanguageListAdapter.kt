@@ -10,6 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.leventarican.room.R
 import com.github.leventarican.room.room.ProgrammingLanguage
 
+/**
+ * recyclerview refresh:
+ * view holder represents element in a list;
+ * after view holder is created the data is bind;
+ * the view and data binding is done with adapter;
+ */
 class ProgrammingLanguageListAdapter : ListAdapter<ProgrammingLanguage, ProgrammingLanguageListAdapter.ProgrammingLanguageViewHolder>(ProgrammingLanguageComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProgrammingLanguageViewHolder {
