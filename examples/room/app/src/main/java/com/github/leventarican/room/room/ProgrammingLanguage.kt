@@ -1,4 +1,4 @@
-package com.github.leventarican.room
+package com.github.leventarican.room.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

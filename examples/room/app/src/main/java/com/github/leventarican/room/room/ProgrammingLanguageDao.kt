@@ -1,4 +1,4 @@
-package com.github.leventarican.room
+package com.github.leventarican.room.room
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
  * with Flow queries are automatically run asynchronously on a background thread
  */
 @Dao
-interface ProgrammingDao {
+interface ProgrammingLanguageDao {
     @Query("SELECT * FROM programming_language ORDER BY language ASC")
     fun getAlphabetizedProgrammingLanguages(): Flow<List<ProgrammingLanguage>>
 
