@@ -19,6 +19,9 @@
 1. create layout files: item, styles
 2. create recycler view
 
+### application 
+1. create instance of database and repository in `Application` class
+
 ## Links
 * https://developer.android.com/codelabs/android-room-with-a-view-kotlin
 * https://github.com/googlecodelabs/android-room-with-a-view/tree/kotlin

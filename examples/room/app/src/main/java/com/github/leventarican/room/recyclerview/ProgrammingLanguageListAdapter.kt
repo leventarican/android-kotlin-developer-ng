@@ -45,7 +45,7 @@ class ProgrammingLanguageListAdapter : ListAdapter<ProgrammingLanguage, Programm
 
     class ProgrammingLanguageComparator : DiffUtil.ItemCallback<ProgrammingLanguage>() {
         override fun areItemsTheSame(oldItem: ProgrammingLanguage, newItem: ProgrammingLanguage): Boolean {
-            return oldItem.id === newItem.id
+            return oldItem === newItem
         }
 
         override fun areContentsTheSame(oldItem: ProgrammingLanguage, newItem: ProgrammingLanguage): Boolean {
