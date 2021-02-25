@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.leventarican.apple">
 
+    <!--
+    android:theme="@style/Theme.AppLe"
+    defined in res/values/themes.xml, res/values-night/themes.xml
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

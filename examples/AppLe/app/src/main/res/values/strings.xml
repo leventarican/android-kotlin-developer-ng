@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">App Le</string>
     <string name="hello_blank_fragment">under construction</string>
+    <string name="about">About</string>
 </resources>
