@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.github.leventarican.apple.databinding.ActivityMainBinding
 
+/**
+ * the main activity
+ */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
