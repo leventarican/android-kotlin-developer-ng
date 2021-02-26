@@ -1,29 +1,20 @@
-# App Le
+# App Le - Under construction
 
-* app under construction
-* kind of a tech demo
+## RecyclerView
+In order to use `RecyclerView` you need to setup following pieces:
+* item: our data
+* adapter: converts data/item to `RecyclerView`'s format. Check also code comment.
+* viewholders: pool of reuse views
+* recyclerview: `RecyclerView` interacts with `ViewHolder`
 
-## used features / components
-> read also the code comments 
-* `Application` class - optional
-* single Activity App. the main activity has: 
-    * navigation host fragment: the navigation controller
-    * Navigation Drawer
-    * app bar
-* Fragments
-* Navigation
-    *  navigation graph: `navigation_graph.xml`
-* Navigation Drawer
-    * with `navigation_header.xml`
-    * `NavigationView` with top-level container `DrawerLayout`
-* app bar: Toolbar with AppBarLayout
-    * with themes/styles based on parent `Theme.AppCompat.Light.NoActionBar`
-* Floating Button
+### Now we implement our logic
+* create class `Datasource`: as the name suggests the data provider
+* create data class `ProgrammingLang`: our entity
 
-## links
-* https://developer.android.com/training/appbar
-* https://developer.android.com/guide/navigation/navigation-ui#add_a_navigation_drawer
-* https://developer.android.com/courses/kotlin-android-fundamentals/toc
-* https://developer.android.com/reference/kotlin/androidx/coordinatorlayout/widget/CoordinatorLayout.html
-* https://developer.android.com/training/swipe/add-swipe-interface
-* https://kotlinlang.org/docs/properties.html#backing-properties
+### Transform model to android
+Next we need a way to take the data from data source and format it to `RecyclerView`'s format
+The transformation is done with Adapters.
+> Adapter is a __design pattern__ that adapts the data into something that understands `RecyclerView` 
+
+## Links
+* https://developer.android.com/codelabs/basic-android-kotlin-training-recyclerview-scrollable-list?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-2-pathway-3%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-recyclerview-scrollable-list#3

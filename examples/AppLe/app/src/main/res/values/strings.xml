@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">App Le</string>
-    <string name="hello_blank_fragment">under construction</string>
-    <string name="about">About</string>
+    <string name="under_construction">under construction</string>
+    <string name="pl0">Java</string>
+    <string name="pl1">Rust</string>
+    <string name="pl2">Kotlin</string>
+    <string name="pl3">C++</string>
+    <string name="pl4">Python</string>
+    <string name="pl5">Dart</string>
 </resources>
