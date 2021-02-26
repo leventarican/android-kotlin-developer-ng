@@ -52,4 +52,9 @@ dependencies {
     // navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_version"
+
+    // https://developer.android.com/topic/libraries/architecture/coroutines
+    // used in view model: Screen0ViewModel, ...
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+
 }

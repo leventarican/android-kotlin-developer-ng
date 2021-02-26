@@ -5,6 +5,12 @@
     android:id="@+id/navigation"
     app:startDestination="@id/screen0">
 
+    <!--
+    some notes:
+    * start fragment is screen0
+    * if you want to want preview in IDE design view then use attribute tools:layout
+    -->
+
     <fragment
         android:id="@+id/screen0"
         android:name="com.github.leventarican.apple.Screen0"

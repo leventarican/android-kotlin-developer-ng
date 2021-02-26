@@ -1,24 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+some notes:
+
+# CoordinatorLayout
+we are using here CoordinatorLayout. per definitions primary use case:
+1. As a top-level application decor or chrome layout
+2. As a container for a specific interaction with one or more child views
+
+# SwipeRefreshLayout
+Remember that SwipeRefreshLayout only supports a single ListView or GridView child.
+Thus we extend it.
+
+We also use here methods, fields from SwipeRefreshLayout:
+* onRefreshListener - app:onRefreshListener="" -> do you operations
+* refreshing - app:refreshing=""
+
+-->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.github.leventarican.apple.Screen0ViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
+        <com.github.leventarican.apple.ExtendedSwipeRefreshLayout
+            android:id="@+id/screen0_swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:onRefreshListener="@{viewmodel::operation}"
+            app:refreshing="@{viewmodel.dataLoading}"
+            >
+
+            <LinearLayout
+                android:id="@+id/screen0_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/screen0_list"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <CheckBox-->
+<!--                        android:id="@+id/screen0_checkbox"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_centerInParent="true" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/screen0_textview"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_toRightOf="@id/screen0_checkbox"-->
+<!--                        android:text="title" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/screen0_textview"-->
+<!--                        android:layout_toRightOf="@id/screen0_checkbox"-->
+<!--                        android:text="description" />-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </LinearLayout>-->
+
+            <!--
+            displayed only if no data is available
+            -->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/screen0_empty_list"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:visibility="invisible" />-->
+
+        </com.github.leventarican.apple.ExtendedSwipeRefreshLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment"
-            android:textSize="36sp" />
+            android:layout_margin="16dp"
+            android:clickable="true"
+            app:fabSize="normal"
+            app:layout_anchor="@id/screen0_list"
+            app:layout_anchorGravity="end|bottom"
+            app:srcCompat="@android:drawable/ic_input_add" />
 
-        <Button
-            android:id="@+id/button0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
-
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
