@@ -3,6 +3,7 @@ package com.github.leventarican.applayout
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -31,7 +32,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun process(view: View?) {
-        binding.textView.text = binding.edit.text
+        programmingLang.name = binding.edit.text.toString()
+        Log.i("#", "data: $programmingLang")
+
+//        immediate binding
+//        https://developer.android.com/topic/libraries/data-binding/generated-binding
+//        binding.executePendingBindings()
+
+        // just to demonstrate data binding without ViewModel / LiveData
+        binding.invalidateAll()
+
         hideKeyboard(view)
     }
 
