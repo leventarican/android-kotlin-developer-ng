@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">underconstruction</string>
+    <string name="data_format">data: %d</string>
 </resources>

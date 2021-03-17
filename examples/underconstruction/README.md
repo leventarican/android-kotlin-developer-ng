@@ -1,0 +1,3 @@
+# under construction
+* demonstration of: ViewModel, Data Binding, LiveData, Navigation, ...
+ 
