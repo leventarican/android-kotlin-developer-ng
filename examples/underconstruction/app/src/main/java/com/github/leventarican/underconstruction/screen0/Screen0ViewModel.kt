@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class Screen0ViewModel : ViewModel() {
+    val max: Int = 3
     private val _data = MutableLiveData<Int>()
     val data: LiveData<Int>
         get() = _data

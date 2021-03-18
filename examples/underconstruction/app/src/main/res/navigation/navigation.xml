@@ -8,5 +8,14 @@
         android:id="@+id/screen0Fragment"
         android:name="com.github.leventarican.underconstruction.screen0.Screen0Fragment"
         android:label="screen0_fragment"
-        tools:layout="@layout/screen0_fragment" />
+        tools:layout="@layout/screen0_fragment" >
+        <action
+            android:id="@+id/action_screen0Fragment_to_screen1Fragment"
+            app:destination="@id/screen1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/screen1Fragment"
+        android:name="com.github.leventarican.underconstruction.screen1.Screen1Fragment"
+        android:label="screen1_fragment"
+        tools:layout="@layout/screen1_fragment" />
 </navigation>
