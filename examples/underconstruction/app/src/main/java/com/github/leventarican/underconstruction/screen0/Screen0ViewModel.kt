@@ -20,4 +20,8 @@ class Screen0ViewModel : ViewModel() {
     fun increase() {
         _data.value = _data.value?.plus(1)
     }
+
+    fun reset() {
+        _data.value = _data.value?.minus(max)
+    }
 }
