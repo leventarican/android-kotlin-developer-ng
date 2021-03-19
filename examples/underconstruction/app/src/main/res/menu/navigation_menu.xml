@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+used for options menu.
+the id's are the same as destination id's defined in navigation graph (navigation.xml)
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/screen0Fragment"
+        android:title="screen 0"/>
+    <item
+        android:id="@+id/screen1Fragment"
+        android:title="screen 1"/>
+</menu>

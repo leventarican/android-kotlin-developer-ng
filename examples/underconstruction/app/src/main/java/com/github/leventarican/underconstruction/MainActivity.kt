@@ -2,6 +2,9 @@ package com.github.leventarican.underconstruction
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.github.leventarican.underconstruction.databinding.ActivityMainBinding
 
 /**
@@ -25,5 +28,16 @@ class MainActivity : AppCompatActivity() {
         // that's why we use this function where ToolBar acts as a ActionBar.
         // we also edit AndroidManifest.xml and add AppBarLayout to the layout file.
         setSupportActionBar(binding.toolbar)
+
+        // next, we want to add navigation to the app bar.
+        // this means we will have a UP button in the app bar.
+        // to do this we say this is the activity and this is the navigation host.
+        NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.navigationHost))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.navigationHost)
+        val appBarConfiguration = AppBarConfiguration.Builder().build()
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 }

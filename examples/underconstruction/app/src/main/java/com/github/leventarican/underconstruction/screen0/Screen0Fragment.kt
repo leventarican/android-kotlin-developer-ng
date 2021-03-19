@@ -38,6 +38,11 @@ class Screen0Fragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        // 1. we get the view model instance
+        // 2. we set the scope for live data. who is the lifecycle owner? exactly __this__ fragment
+        // we could also say `this` instead of `viewLifecycleOwner`. a `Fragment` is a `LifecycleOwner`
+        // 3. we set the view model to the generated binding class which is in layout file used
         viewModel = ViewModelProvider(this).get(Screen0ViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
