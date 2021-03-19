@@ -12,7 +12,8 @@ import androidx.navigation.ui.onNavDestinationSelected
 import com.github.leventarican.underconstruction.databinding.ActivityMainBinding
 
 /**
- * TODO: implement options menu (incl. menu.xml)
+ * TODO: implement binding adapters
+ * DONE: implement options menu (incl. menu.xml)
  * DONE: implement navigation UP with Navigation UI
  * DONE: back button does not work. reset data to 0. if not it will navigate always to screen 1
  */
