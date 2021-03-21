@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -12,7 +13,8 @@ import androidx.navigation.ui.onNavDestinationSelected
 import com.github.leventarican.underconstruction.databinding.ActivityMainBinding
 
 /**
- * TODO: implement binding adapters
+ * TODO: add navigation drawer
+ * DONE: implement binding adapters
  * DONE: implement options menu (incl. menu.xml)
  * DONE: implement navigation UP with Navigation UI
  * DONE: back button does not work. reset data to 0. if not it will navigate always to screen 1
@@ -40,7 +42,9 @@ class MainActivity : AppCompatActivity() {
         // this means we will have a UP button in the app bar.
         // to do this we say this is the activity and this is the navigation host.
         // we also need to override onSupportNavigateUp() method.
-        NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.navigationHost))
+
+        val navController = findNavController(R.id.navigationHost)
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
         // next, we want also a options menu / overflow menu in the app bar.
         // for that purpose we implement onCreateOptionsMenu() to show the menu
