@@ -35,3 +35,8 @@ Here is a list of the used components and the respective
 * Navigation Drawer
     * navigation_drawer_header.xml
     * activity_main.xml: DrawerLayout as root layout
+* Room: add persistence
+    * build.gradle: kotlin-kapt 
+    * create entity: Developer
+    * create DAO: DeveloperDao
+    * create database: AppDatabase
